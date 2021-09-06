@@ -9,14 +9,17 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Install Dependencies
-COPY package*.json ./
+COPY package*.json /usr/src/app/
 
 RUN npm install
+RUN apk update
+RUN apk add
+RUN apk add ffmpeg
 
 # Copy app source code
-COPY . .
+COPY . /usr/src/app
 
 # Exports
 EXPOSE 8080
-
+EXPOSE $PORT
 CMD ["npm","start"]
