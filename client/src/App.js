@@ -1,24 +1,26 @@
+import { Button, Switch } from "antd";
+import i18next from "i18next";
 import React from "react";
-import "./App.css";
-import logo from "./logo.svg";
+import { useThemeSwitcher } from "react-css-theme-switcher";
+import Text from "./components/test";
 
 function App() {
+  const [isDarkMode, setIsDarkMode] = React.useState();
+  const { switcher, currentTheme, themes } = useThemeSwitcher();
+
+  const toggleTheme = (isChecked) => {
+    setIsDarkMode(isChecked);
+    switcher({ theme: isChecked ? themes.dark : themes.light });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Get Started with mern-docker
-        </a>
-      </header>
+    <div>
+      <Button onClick={() => i18next.changeLanguage("vi")}>Vi</Button>
+      <Button onClick={() => i18next.changeLanguage("en")}>En</Button>
+      <Text />
+
+      <h1>The current theme is: {currentTheme}</h1>
+      <Switch checked={isDarkMode} onChange={toggleTheme} />
     </div>
   );
 }
