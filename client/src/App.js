@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify"
 import BackToTop from "./components/BackToTop"
 import Text from "./components/Text"
 import Toast from "./components/Toast"
+import Header from './layouts/Header/Header'
 
 function App() {
   const [isDarkMode, setIsDarkMode] = React.useState()
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <div>
+      <Header />
       <Button onClick={() => i18next.changeLanguage("vi")}>Vi</Button>
       <Button onClick={() => i18next.changeLanguage("en")}>En</Button>
 
