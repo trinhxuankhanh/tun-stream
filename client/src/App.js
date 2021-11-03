@@ -6,15 +6,23 @@ import { ToastContainer } from "react-toastify"
 import BackToTop from "./components/BackToTop"
 import Text from "./components/Text"
 import Toast from "./components/Toast"
+import categoryApi from "./api/categoryApi"
+import { useQuery, useMutation, useQueryClient } from "react-query"
 
 function App() {
   const [isDarkMode, setIsDarkMode] = React.useState()
   const { switcher, currentTheme, themes } = useThemeSwitcher()
+  const queryClient = useQueryClient()
+  const query = useQuery("todos", categoryApi.getAll)
 
   const toggleTheme = isChecked => {
     setIsDarkMode(isChecked)
     switcher({ theme: isChecked ? themes.dark : themes.light })
   }
+
+  const mutation = useMutation(categoryApi.creat, {
+    onSuccess: () => queryClient.invalidateQueries("todos"),
+  })
 
   return (
     <div>
@@ -27,6 +35,19 @@ function App() {
       <Switch checked={isDarkMode} onChange={toggleTheme} />
 
       <Toast content={<Text id='title' type={false} />} theme={currentTheme} type='success' />
+      <ul>
+        {query.data.map(todo => (
+          <li key={todo}>{todo}</li>
+        ))}
+      </ul>
+
+      <Button
+        onClick={() => {
+          mutation.mutate("4")
+        }}
+      >
+        Add
+      </Button>
       <ToastContainer />
       <BackToTop />
     </div>

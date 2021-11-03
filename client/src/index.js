@@ -5,6 +5,7 @@ import React from "react"
 import { ThemeSwitcherProvider } from "react-css-theme-switcher"
 import ReactDOM from "react-dom"
 import { I18nextProvider, initReactI18next } from "react-i18next"
+import { QueryClient, QueryClientProvider } from "react-query"
 import "react-toastify/dist/ReactToastify.css"
 import App from "./App"
 
@@ -12,6 +13,8 @@ const themes = {
   dark: `${process.env.PUBLIC_URL}/dark-theme.css`,
   light: `${process.env.PUBLIC_URL}/light-theme.css`,
 }
+
+const queryClient = new QueryClient()
 
 i18n
   .use(initReactI18next)
@@ -41,7 +44,9 @@ ReactDOM.render(
       defaultTheme='dark'
       insertionPoint='styles-insertion-point'
     >
-      <App />
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
     </ThemeSwitcherProvider>
   </I18nextProvider>,
   document.getElementById("root"),
