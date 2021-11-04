@@ -1,4 +1,5 @@
 import axiosClient from "./axiosClient"
+import db from "./firebase/initStore"
 
 const data = ["1", "2", "3"]
 
@@ -7,7 +8,11 @@ const categoryApi = {
     return data
   },
 
-  getAllById: () => {},
+  getAllById: async () => {
+    const snapshot = await db.ref("alo").once("value")
+    const dataJSON = await Promise.resolve(snapshot.toJSON())
+    return dataJSON
+  },
 
   updateById: () => {},
 

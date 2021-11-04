@@ -10,8 +10,8 @@ import "react-toastify/dist/ReactToastify.css"
 import App from "./App"
 
 const themes = {
-  dark: `${process.env.PUBLIC_URL}/dark-theme.css`,
-  light: `${process.env.PUBLIC_URL}/light-theme.css`,
+  dark: "/dark-theme.css",
+  light: "/light-theme.css",
 }
 
 const queryClient = new QueryClient()
