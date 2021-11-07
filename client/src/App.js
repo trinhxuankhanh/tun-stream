@@ -1,4 +1,4 @@
-import { Button, Switch } from "antd"
+import { Button } from "antd"
 import i18next from "i18next"
 import React, { useEffect, useState } from "react"
 import { useThemeSwitcher } from "react-css-theme-switcher"
@@ -6,22 +6,16 @@ import { useMutation, useQuery, useQueryClient } from "react-query"
 import { ToastContainer } from "react-toastify"
 import categoryApi from "./api/categoryApi"
 import BackToTop from "./components/BackToTop"
+import Header from "./components/Header/index"
 import Text from "./components/Text"
 import Toast from "./components/Toast"
 import { checkObjectEmpty } from "./provider/object"
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = React.useState()
-  const { switcher, currentTheme, themes } = useThemeSwitcher()
+  const { currentTheme } = useThemeSwitcher()
   const queryClient = useQueryClient()
   const query = useQuery("todos", categoryApi.getAll)
   const [data, setData] = useState({})
-
-  const toggleTheme = isChecked => {
-    setIsDarkMode(isChecked)
-    switcher({ theme: isChecked ? themes.dark : themes.light })
-  }
-
   const mutation = useMutation(categoryApi.creat, {
     onSuccess: () => queryClient.invalidateQueries("todos"),
   })
@@ -37,10 +31,7 @@ function App() {
 
       <Text id='title' />
 
-      <p>{! checkObjectEmpty(data) && data.khanh}</p>
-
-      <h1>The current theme is: {currentTheme}</h1>
-      <Switch checked={isDarkMode} onChange={toggleTheme} />
+      <p>{!checkObjectEmpty(data) && data.khanh}</p>
 
       <Toast content={<Text id='title' type={false} />} theme={currentTheme} type='success' />
       <ul>{query.data?.length > 0 && query.data.map(todo => <li key={todo}>{todo}</li>)}</ul>
@@ -54,6 +45,8 @@ function App() {
       </Button>
       <ToastContainer />
       <BackToTop />
+
+      <Header />
     </div>
   )
 }
