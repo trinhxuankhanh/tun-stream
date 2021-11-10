@@ -11,17 +11,17 @@ const SwitchDartMode = () => {
     switcher({ theme: isChecked ? themes.dark : themes.light })
   }
   return (
-    <div class='switch'>
+    <div className='switch'>
       <input
         type='checkbox'
-        class='switch__input'
+        className='switch__input'
         id='Switch'
         value={isDarkMode}
         onChange={e => toggleTheme(!e.target.checked)}
       />
-      <label class='switch__label' for='Switch'>
-        <span class='switch__indicator'></span>
-        <span class='switch__decoration'></span>
+      <label className='switch__label' htmlFor='Switch'>
+        <span className='switch__indicator'></span>
+        <span className='switch__decoration'></span>
       </label>
     </div>
   )

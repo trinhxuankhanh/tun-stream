@@ -1,4 +1,3 @@
-import { Button } from "antd"
 import i18next from "i18next"
 import React, { useEffect, useState } from "react"
 import { useThemeSwitcher } from "react-css-theme-switcher"
@@ -10,6 +9,7 @@ import Header from "./components/Header/index"
 import Text from "./components/Text"
 import Toast from "./components/Toast"
 import { checkObjectEmpty } from "./provider/object"
+import ButtonCustom from "./components/Button/index"
 
 function App() {
   const { currentTheme } = useThemeSwitcher()
@@ -26,8 +26,8 @@ function App() {
 
   return (
     <div>
-      <Button onClick={() => i18next.changeLanguage("vi")}>Vi</Button>
-      <Button onClick={() => i18next.changeLanguage("en")}>En</Button>
+      <ButtonCustom component="btn" classStyle="btn--bubble" onClick={() => i18next.changeLanguage("vi")}>Vi</ButtonCustom>
+      <ButtonCustom component="btn" classStyle="btn--bubble" onClick={() => i18next.changeLanguage("en")}>En</ButtonCustom>
 
       <Text id='title' />
 
@@ -36,17 +36,22 @@ function App() {
       <Toast content={<Text id='title' type={false} />} theme={currentTheme} type='success' />
       <ul>{query.data?.length > 0 && query.data.map(todo => <li key={todo}>{todo}</li>)}</ul>
 
-      <Button
+      <ButtonCustom
+      component="btn"
+      classStyle="btn--bubble"
         onClick={() => {
           mutation.mutate("4")
         }}
       >
         Add
-      </Button>
+      </ButtonCustom>
       <ToastContainer />
       <BackToTop />
 
       <Header />
+
+      <ButtonCustom component="btn" classStyle="btn--bubble">Hello</ButtonCustom>
+      <ButtonCustom component="btn" classStyle="btn--side">Hello</ButtonCustom>
     </div>
   )
 }
