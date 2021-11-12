@@ -1,11 +1,9 @@
 import React from "react"
 import { withTranslation } from "react-i18next"
-import { Typography } from "antd"
+import Typography from '@mui/material/Typography';
 
-const { Paragraph } = Typography
-
-const Text = ({ t, type = true, id }) => {
-  return type ? <Paragraph>{t(id)}</Paragraph> : `${t(id)}`
+const Text = ({ t, type = true, id, ...rest }) => {
+  return type ? <Typography {...rest}>{t(id)}</Typography> : `${t(id)}`
 }
 
 export default withTranslation()(Text)

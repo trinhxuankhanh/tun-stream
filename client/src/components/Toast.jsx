@@ -1,4 +1,3 @@
-import { Button } from "antd"
 import React from "react"
 import { toast } from "react-toastify"
 
@@ -17,7 +16,7 @@ const Toast = ({ content, theme, type }) => {
         return toast(content, { theme })
     }
   }
-  return <Button onClick={notify}>Notify !</Button>
+  return <button onClick={notify}>Notify !</button>
 }
 
 export default Toast
