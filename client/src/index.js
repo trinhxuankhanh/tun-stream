@@ -6,6 +6,7 @@ import { ThemeSwitcherProvider } from "react-css-theme-switcher"
 import ReactDOM from "react-dom"
 import { I18nextProvider, initReactI18next } from "react-i18next"
 import { QueryClient, QueryClientProvider } from "react-query"
+import { BrowserRouter as Router } from "react-router-dom"
 import "react-toastify/dist/ReactToastify.css"
 import App from "./App"
 
@@ -45,7 +46,9 @@ ReactDOM.render(
       insertionPoint='styles-insertion-point'
     >
       <QueryClientProvider client={queryClient}>
-        <App />
+        <Router>
+          <App />
+        </Router>
       </QueryClientProvider>
     </ThemeSwitcherProvider>
   </I18nextProvider>,

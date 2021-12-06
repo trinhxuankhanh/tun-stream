@@ -1,8 +1,8 @@
 import React, { Fragment } from "react"
+import "./ButtonBubble/style.css"
+import "./ButtonSide/style.css"
+import "./style.css"
 
-import './style.css'
-import './ButtonBubble/style.css'
-import './ButtonSide/style.css'
 
 const ButtonCustom = ({ component = "btn", classStyle, href, children, onClick, ...rest }) => {
   return (

@@ -2,7 +2,6 @@ import React from "react"
 import SwitchDartMode from "../SwitchDartMode/Switch"
 import i18next from "i18next"
 
-
 // const menu = (
 //   <Menu>
 //     <Menu.Item key='0'>
